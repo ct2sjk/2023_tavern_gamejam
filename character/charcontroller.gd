@@ -13,7 +13,8 @@ func _physics_process(_delta):
 	
 	var input_direction = Vector2(
 		Input.get_action_strength("Right") - Input.get_action_strength("Left"),
-		Input.get_action_strength("Down") - Input.get_action_strength("Up")
+		# up and down motion should be slower than left and right
+		(Input.get_action_strength("Down") - Input.get_action_strength("Up")) * .7
 	)
 	
 #	update_animation_parameters(input_direction)

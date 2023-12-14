@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt2i4tfxykk5v"]
+
+[ext_resource type="PackedScene" uid="uid://delkr6uwxdmff" path="res://character/charcontroller.tscn" id="1_ggybd"]
+[ext_resource type="Texture2D" uid="uid://dy8dntte1uy0e" path="res://Level/background.png" id="1_sbvbj"]
+[ext_resource type="Script" path="res://Level/countdown.gd" id="2_2ycho"]
+[ext_resource type="Texture2D" uid="uid://7tl218fmc67g" path="res://Level/groundlevel.png" id="2_r82ih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de1ya"]
+size = Vector2(320, 10)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_sbvbj")
+
+[node name="ground level" type="Sprite2D" parent="."]
+position = Vector2(0, 152)
+texture = ExtResource("2_r82ih")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 1)
+
+[node name="timer" type="Label" parent="Camera2D"]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -53.0
+offset_bottom = -63.0
+script = ExtResource("2_2ycho")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_ggybd")]
+position = Vector2(0, 97)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_de1ya")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(0, 184)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_de1ya")

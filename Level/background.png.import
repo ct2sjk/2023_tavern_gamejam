@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drlsvnkgvwebn"
-path="res://.godot/imported/charplacehold.png-9ceb45820b82a3e330c5771525a9b523.ctex"
+uid="uid://dy8dntte1uy0e"
+path="res://.godot/imported/background.png-47debb3bfbcb3feff6312c6444b82560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://charplacehold.png"
-dest_files=["res://.godot/imported/charplacehold.png-9ceb45820b82a3e330c5771525a9b523.ctex"]
+source_file="res://Level/background.png"
+dest_files=["res://.godot/imported/background.png-47debb3bfbcb3feff6312c6444b82560.ctex"]
 
 [params]
 
