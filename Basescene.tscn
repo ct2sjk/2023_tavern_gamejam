@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt2i4tfxykk5v"]
+[gd_scene load_steps=3 format=3 uid="uid://dt2i4tfxykk5v"]
 
 [ext_resource type="Script" path="res://countdown.gd" id="1_b6v3a"]
+[ext_resource type="PackedScene" uid="uid://delkr6uwxdmff" path="res://charcontroller.tscn" id="2_8so6a"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -8,3 +9,5 @@
 offset_right = 256.0
 offset_bottom = 46.0
 script = ExtResource("1_b6v3a")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_8so6a")]
