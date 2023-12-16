@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt2i4tfxykk5v"]
+[gd_scene load_steps=7 format=3 uid="uid://dt2i4tfxykk5v"]
 
 [ext_resource type="PackedScene" uid="uid://delkr6uwxdmff" path="res://character/charcontroller.tscn" id="1_ggybd"]
 [ext_resource type="Texture2D" uid="uid://dy8dntte1uy0e" path="res://Level/background.png" id="1_sbvbj"]
+[ext_resource type="Script" path="res://Level/Basescene.gd" id="1_vmieo"]
 [ext_resource type="Script" path="res://Level/countdown.gd" id="2_2ycho"]
 [ext_resource type="Texture2D" uid="uid://7tl218fmc67g" path="res://Level/groundlevel.png" id="2_r82ih"]
 
@@ -9,6 +10,7 @@
 size = Vector2(320, 10)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_vmieo")
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_sbvbj")
@@ -43,3 +45,5 @@ position = Vector2(0, 184)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_de1ya")
+
+[connection signal="timeup" from="Camera2D/timer" to="." method="_on_timer_timeup"]

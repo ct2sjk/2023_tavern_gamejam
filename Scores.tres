@@ -1,0 +1,10 @@
+[gd_resource type="JSON" format=3 uid="uid://dc3dd6u6nldk1"]
+
+[resource]
+data = [{
+"name": "Carsten",
+"score": 100000.0
+}, {
+"name": "Anthony",
+"score": 0.0
+}]
