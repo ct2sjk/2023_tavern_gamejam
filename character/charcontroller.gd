@@ -22,14 +22,22 @@ func _physics_process(_delta):
 	velocity = input_direction * movespeed
 	move_and_slide()
 	pick_new_state()
-	
+
+func _unhandled_input(event):
+	print (event)
+
 func update_animation_parameters(move_input : Vector2):
 	if (move_input != Vector2.ZERO):
 		animation_tree.set("parameters/walk/blend_position", move_input)
 		animation_tree.set("parameters/idle/blend_position", move_input[0])
-		
+		animation_tree.set("parameters/idle/blend_position",move_input[0])
 func pick_new_state():
-	if (velocity != Vector2.ZERO):
+	
+	#if block is held play block animation
+	if Input.is_action_pressed("Block"):
+		state_machine.travel("block")
+	#if velocity is non zero play coresponding walk animation
+	elif (velocity != Vector2.ZERO):
 		state_machine.travel("walk")
 	else:
 		state_machine.travel("idle")
