@@ -5,6 +5,9 @@ extends CharacterBody2D
 #parameters/idle/blend_position
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+
+#variable set to true when an animation is going
+var busy = false
 func _ready():
 	print("hello")
 	update_animation_parameters(starting_direction)
@@ -30,14 +33,24 @@ func update_animation_parameters(move_input : Vector2):
 	if (move_input != Vector2.ZERO):
 		animation_tree.set("parameters/walk/blend_position", move_input)
 		animation_tree.set("parameters/idle/blend_position", move_input[0])
-		animation_tree.set("parameters/idle/blend_position",move_input[0])
+		animation_tree.set("parameters/block/blend_position",move_input[0])
+		animation_tree.set("parameters/jab/blend_position",move_input[0])
+		
+		
+		
+
 func pick_new_state():
 	
 	#if block is held play block animation
 	if Input.is_action_pressed("Block"):
 		state_machine.travel("block")
+	elif Input.is_action_pressed("Punch"):
+		punch()
 	#if velocity is non zero play coresponding walk animation
 	elif (velocity != Vector2.ZERO):
 		state_machine.travel("walk")
 	else:
 		state_machine.travel("idle")
+
+func punch():
+	state_machine.travel("jab")

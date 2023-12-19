@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://delkr6uwxdmff"]
+[gd_scene load_steps=37 format=3 uid="uid://delkr6uwxdmff"]
 
 [ext_resource type="Script" path="res://character/charcontroller.gd" id="1_ddrtq"]
 [ext_resource type="Texture2D" uid="uid://c8x45a76vhyay" path="res://character/winterTavernJam_character_player_spritesheetsetup-Sheet2.png" id="2_iooyo"]
@@ -261,18 +261,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -64), Vector2(0, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.4, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.5, 1), Vector2(-1.5, -63), Vector2(0.5, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_v6mdp"]
 resource_name = "jabright"
@@ -403,6 +391,19 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_jj8rt")
 blend_point_1/pos = 1.0
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_semyy"]
+animation = &"jableft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26keo"]
+animation = &"jabright"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rb5bc"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_semyy")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_26keo")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5fopn"]
 animation = &"Left"
 
@@ -447,13 +448,15 @@ states/block/node = SubResource("AnimationNodeBlendSpace1D_ma0bk")
 states/block/position = Vector2(451, 74)
 states/idle/node = SubResource("AnimationNodeBlendSpace1D_0e4f3")
 states/idle/position = Vector2(450, 266)
+states/jab/node = SubResource("AnimationNodeBlendSpace1D_rb5bc")
+states/jab/position = Vector2(606, 179)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_6ds5s")
 states/walk/position = Vector2(342, 184)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_25ncr"), "walk", "block", SubResource("AnimationNodeStateMachineTransition_7h884"), "block", "walk", SubResource("AnimationNodeStateMachineTransition_vcaub"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_mw66o"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_36asv")]
 graph_offset = Vector2(38, 52)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8aseq"]
-size = Vector2(29, 62)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jct01"]
+size = Vector2(30, 60)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_ddrtq")
@@ -461,7 +464,7 @@ script = ExtResource("1_ddrtq")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_iooyo")
 hframes = 29
-frame = 4
+frame = 6
 
 [node name="CharPosition" type="CollisionShape2D" parent="."]
 position = Vector2(0, 29)
@@ -481,7 +484,13 @@ tree_root = SubResource("AnimationNodeStateMachine_poye4")
 anim_player = NodePath("../AnimationPlayer")
 parameters/block/blend_position = 0.096096
 parameters/idle/blend_position = 0.00450456
-parameters/walk/blend_position = Vector2(0.1488, 0.189427)
+parameters/jab/blend_position = 0.998498
+parameters/walk/blend_position = Vector2(0.1552, -0.0484581)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8aseq")
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+scale = Vector2(1, 0.981474)
+shape = SubResource("RectangleShape2D_jct01")
