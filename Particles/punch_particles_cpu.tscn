@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://coac0kaj08xba"]
+
+[ext_resource type="Texture2D" uid="uid://ckptrgnnejmwr" path="res://Particles/winterTavernJam_punch_particle.png" id="1_ky25n"]
+
+[sub_resource type="Gradient" id="Gradient_mg46c"]
+offsets = PackedFloat32Array(0.646667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+amount = 20
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("1_ky25n")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.7
+initial_velocity_max = 212.12
+angular_velocity_max = 276.36
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+damping_min = 100.0
+damping_max = 100.0
+color_initial_ramp = SubResource("Gradient_mg46c")

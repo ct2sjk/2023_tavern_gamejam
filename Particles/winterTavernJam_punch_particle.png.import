@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://cec1kimuosbio"
+=======
+uid="uid://ckptrgnnejmwr"
+>>>>>>> Stashed changes
 path="res://.godot/imported/winterTavernJam_punch_particle.png-3a91f4cfd2bd9891cc250786ecd17513.ctex"
 metadata={
 "vram_texture": false
