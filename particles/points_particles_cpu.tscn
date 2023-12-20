@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ic4visnhdan"]
+
+[ext_resource type="Texture2D" uid="uid://cw850bc2buuqc" path="res://Particles/winterTavernJam_score_particle.png" id="1_7tg7i"]
+
+[sub_resource type="Curve" id="Curve_hdp0f"]
+_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(0.146067, 0.791209), 0.0, 0.0, 0, 0, Vector2(0.280899, 0.956044), 0.0, 0.0, 0, 0, Vector2(0.398876, 0.648352), 0.0, 0.0, 0, 0, Vector2(0.533708, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+amount = 1
+texture = ExtResource("1_7tg7i")
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 222.22
+initial_velocity_max = 222.22
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_curve = SubResource("Curve_hdp0f")
