@@ -462,7 +462,7 @@ script = ExtResource("1_ddrtq")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2gtqa")
 hframes = 29
-frame = 3
+frame = 2
 
 [node name="CharPosition" type="CollisionShape2D" parent="."]
 position = Vector2(0, 29)

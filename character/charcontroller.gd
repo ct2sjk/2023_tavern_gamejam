@@ -97,7 +97,7 @@ func punch():
 	if direction == 1:
 		create_hitbox(1,.6,Vector2(22,-17),.5)
 	else:
-		create_hitbox(1,.6,Vector2(-15,-17),.5)
+		create_hitbox(1,.6,Vector2(-20,-17),.5)
 
 
 
