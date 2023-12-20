@@ -6,8 +6,15 @@ extends CharacterBody2D
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
+#import hitbox scene for attacks
+@export var hitbox: PackedScene
+
 #variable set to true when an animation is going
 var busy = false
+
+#wether the character is in the blocking state
+var blocking = false
+
 func _ready():
 	print("hello")
 	update_animation_parameters(starting_direction)
@@ -21,13 +28,14 @@ func _physics_process(_delta):
 	)
 	
 	update_animation_parameters(input_direction)
-	
-	velocity = input_direction * movespeed
-	move_and_slide()
-	pick_new_state()
+	if blocking == false:
+		velocity = input_direction * movespeed
+		move_and_slide()
+		pick_new_state()
 
-func _unhandled_input(event):
-	print (event)
+func _unhandled_input(_event):
+	if Input.is_action_just_released("Block"):
+		unblock()
 
 func update_animation_parameters(move_input : Vector2):
 	if (move_input != Vector2.ZERO):
@@ -41,9 +49,12 @@ func update_animation_parameters(move_input : Vector2):
 
 func pick_new_state():
 	
+	if busy == true:
+		pass
 	#if block is held play block animation
-	if Input.is_action_pressed("Block"):
-		state_machine.travel("block")
+	elif Input.is_action_pressed("Block"):
+		block()
+
 	elif Input.is_action_pressed("Punch"):
 		punch()
 	#if velocity is non zero play coresponding walk animation
@@ -52,5 +63,32 @@ func pick_new_state():
 	else:
 		state_machine.travel("idle")
 
+func create_hitbox(width, height, offset):
+	var hitbox_instance = hitbox.instance()
+	self.add_child(hitbox_instance)
+	hitbox_instance.setvariables(width,height)
+
+func block():
+	state_machine.travel("block")
+	blocking = true
+	
+func unblock():
+	blocking = false
+	
+#needs to set state to busy and lock animation to punching then initiate the hitbox
 func punch():
 	state_machine.travel("jab")
+	busy = true
+	
+
+
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	print(anim_name)
+	if anim_name == "jableft" or "jabright":
+		busy = false
+
+
+func _on_animation_player_animation_finished(anim_name):
+	print(anim_name)
