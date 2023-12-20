@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://delkr6uwxdmff"]
+[gd_scene load_steps=37 format=3 uid="uid://delkr6uwxdmff"]
 
 [ext_resource type="Script" path="res://character/charcontroller.gd" id="1_ddrtq"]
 [ext_resource type="Texture2D" uid="uid://c34ddyxrxof1" path="res://winterTavernJam_character_player-Sheet_textured.png" id="2_2gtqa"]
-[ext_resource type="PackedScene" uid="uid://bb2t6co5wx80n" path="res://character/hitbox.tscn" id="2_xvmta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biylq"]
 size = Vector2(32, 6)
@@ -459,12 +458,11 @@ size = Vector2(30, 60)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_ddrtq")
-hitbox = ExtResource("2_xvmta")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2gtqa")
 hframes = 29
-frame = 2
+frame = 3
 
 [node name="CharPosition" type="CollisionShape2D" parent="."]
 position = Vector2(0, 29)
