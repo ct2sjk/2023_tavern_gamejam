@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5vnvq3pmni5f"]
+[gd_scene load_steps=5 format=3 uid="uid://b5vnvq3pmni5f"]
 
-[ext_resource type="Script" path="res://Endscreen.gd" id="1_1et3t"]
 [ext_resource type="FontFile" uid="uid://dow5y546rxx6w" path="res://Labels/Karmatic_Arcade.ttf" id="2_300rb"]
+[ext_resource type="Script" path="res://Label2.gd" id="4_3dj1k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ispvm"]
 line_spacing = 12.0
 font = ExtResource("2_300rb")
 font_size = 22
 font_color = Color(0.945098, 0.941176, 0.933333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xr0b"]
+font = ExtResource("2_300rb")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,29 +19,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1et3t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_right = 958.0
-offset_bottom = 539.0
-
-[node name="Label" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 393.0
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 428.0
 offset_top = 105.0
-offset_right = 579.0
+offset_right = 614.0
 offset_bottom = 130.0
-text = "HIGH SCORES"
+text = "SCORE"
 label_settings = SubResource("LabelSettings_ispvm")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 479.0
-offset_top = 139.0
-offset_right = 519.0
-offset_bottom = 179.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/ScrollContainer"]
-layout_mode = 2
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 462.0
+offset_top = 150.0
+offset_right = 502.0
+offset_bottom = 173.0
+label_settings = SubResource("LabelSettings_8xr0b")
+script = ExtResource("4_3dj1k")

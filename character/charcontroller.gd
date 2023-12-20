@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+signal tookdamage
 @export var movespeed : float = 100
 @export var starting_direction : Vector2 = Vector2(0,1)
 #parameters/idle/blend_position
@@ -98,7 +98,12 @@ func punch():
 		create_hitbox(1,.6,Vector2(22,-17),.5)
 	else:
 		create_hitbox(1,.6,Vector2(-20,-17),.5)
-
+	var timer := Timer.new()
+	add_child(timer)
+	timer.wait_time = .5
+	timer.one_shot = true
+	timer.start()
+	timer.connect("timeout", self._on_timer_timeout)
 
 
 
@@ -110,3 +115,12 @@ func _on_animation_tree_animation_finished(anim_name):
 
 func _on_animation_player_animation_finished(anim_name):
 	print(anim_name)
+
+func takedamage(damage):
+	if blocking == true:
+		pass
+	else:
+		emit_signal("tookdamage")
+
+func _on_timer_timeout() -> void:
+	busy = false

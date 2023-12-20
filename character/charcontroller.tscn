@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://delkr6uwxdmff"]
+[gd_scene load_steps=38 format=3 uid="uid://delkr6uwxdmff"]
 
 [ext_resource type="Script" path="res://character/charcontroller.gd" id="1_ddrtq"]
 [ext_resource type="Texture2D" uid="uid://c34ddyxrxof1" path="res://winterTavernJam_character_player-Sheet_textured.png" id="2_2gtqa"]
+[ext_resource type="Script" path="res://character/hurtbox.gd" id="3_d5fhu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biylq"]
-size = Vector2(32, 6)
+size = Vector2(32, 15.25)
 
 [sub_resource type="Animation" id="Animation_n410s"]
 resource_name = "BlockLeft"
@@ -454,9 +455,10 @@ transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(38, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jct01"]
-size = Vector2(30, 60)
+size = Vector2(21.1571, 44.7555)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+platform_floor_layers = 4294967040
 script = ExtResource("1_ddrtq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -465,7 +467,7 @@ hframes = 29
 frame = 2
 
 [node name="CharPosition" type="CollisionShape2D" parent="."]
-position = Vector2(0, 29)
+position = Vector2(0, 24.625)
 shape = SubResource("RectangleShape2D_biylq")
 debug_color = Color(0.227451, 0.505882, 0.47451, 0.419608)
 
@@ -485,11 +487,13 @@ parameters/idle/blend_position = 0.00450456
 parameters/jab/blend_position = -0.998498
 parameters/walk/blend_position = Vector2(0.1552, -0.0484581)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="."]
 scale = Vector2(1.03984, 1.16103)
-collision_layer = 32
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_d5fhu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 2)
 scale = Vector2(1, 0.981474)
 shape = SubResource("RectangleShape2D_jct01")

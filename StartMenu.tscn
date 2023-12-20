@@ -19,22 +19,4 @@ offset_right = 554.0
 offset_bottom = 226.0
 text = "Start"
 
-[node name="Leaderboard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 378.0
-offset_top = 242.0
-offset_right = 553.0
-offset_bottom = 310.0
-text = "Leaderboard"
-
-[node name="Exit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 378.0
-offset_top = 326.0
-offset_right = 553.0
-offset_bottom = 394.0
-text = "Exit"
-
 [connection signal="pressed" from="Start_Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Leaderboard" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_button_pressed"]

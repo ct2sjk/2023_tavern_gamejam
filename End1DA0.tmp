@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5vnvq3pmni5f"]
+
+[ext_resource type="Script" path="res://Endscreen.gd" id="1_1et3t"]
+[ext_resource type="FontFile" uid="uid://dow5y546rxx6w" path="res://Labels/Karmatic_Arcade.ttf" id="2_300rb"]
+[ext_resource type="Script" path="res://Label.gd" id="3_kgbcs"]
+[ext_resource type="Script" path="res://Label2.gd" id="4_3dj1k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ispvm"]
+line_spacing = 12.0
+font = ExtResource("2_300rb")
+font_size = 22
+font_color = Color(0.945098, 0.941176, 0.933333, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1et3t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 428.0
+offset_top = 105.0
+offset_right = 614.0
+offset_bottom = 130.0
+text = "SCORE"
+label_settings = SubResource("LabelSettings_ispvm")
+script = ExtResource("3_kgbcs")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_3dj1k")
