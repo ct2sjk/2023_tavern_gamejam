@@ -7,10 +7,7 @@ extends CharacterBody2D
 @onready var state_machine = animation_tree.get("parameters/playback")
 
 #import hitbox scene for attacks
-var hitbox = preload("res://character/hitbox.tscn")
-
-#direction of the character
-var direction = 1
+@export var hitbox: PackedScene
 
 #variable set to true when an animation is going
 var busy = false
@@ -31,7 +28,7 @@ func _physics_process(_delta):
 	)
 	
 	update_animation_parameters(input_direction)
-	if blocking == false && busy == false:
+	if blocking == false:
 		velocity = input_direction * movespeed
 		move_and_slide()
 		pick_new_state()
@@ -41,25 +38,15 @@ func _unhandled_input(_event):
 		unblock()
 
 func update_animation_parameters(move_input : Vector2):
-	if (move_input != Vector2.ZERO) && busy == false:
-		
-		#set the position of the point in all of the animation spaces
-	
+	if (move_input != Vector2.ZERO):
 		animation_tree.set("parameters/walk/blend_position", move_input)
 		animation_tree.set("parameters/idle/blend_position", move_input[0])
 		animation_tree.set("parameters/block/blend_position",move_input[0])
 		animation_tree.set("parameters/jab/blend_position",move_input[0])
 		
-		#set the direction of the character
-		setdirection(move_input[0])
 		
 		
 
-func setdirection(value):
-	if value<0:
-		direction = 0
-	elif value>0:
-		direction = 1
 func pick_new_state():
 	
 	if busy == true:
@@ -76,13 +63,11 @@ func pick_new_state():
 	else:
 		state_machine.travel("idle")
 
-func create_hitbox(width, height, offset,time):
-	var hitbox_instance = hitbox.instantiate()
-	hitbox_instance.position = offset
-	add_child(hitbox_instance)
-	hitbox_instance.setvariables(width,height,time)
-	
-	
+func create_hitbox(width, height, offset):
+	var hitbox_instance = hitbox.instance()
+	self.add_child(hitbox_instance)
+	hitbox_instance.setvariables(width,height)
+
 func block():
 	state_machine.travel("block")
 	blocking = true
@@ -94,10 +79,7 @@ func unblock():
 func punch():
 	state_machine.travel("jab")
 	busy = true
-	if direction == 1:
-		create_hitbox(1,.6,Vector2(22,-17),.5)
-	else:
-		create_hitbox(1,.6,Vector2(-15,-17),.5)
+	
 
 
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb2t6co5wx80n"]
+[gd_scene load_steps=3 format=3 uid="uid://bb2t6co5wx80n"]
 
 [ext_resource type="Script" path="res://Attackhitbox.gd" id="1_8u601"]
-[ext_resource type="Texture2D" uid="uid://drlsvnkgvwebn" path="res://character/charplacehold.png" id="2_pcy54"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3h56i"]
 
@@ -12,11 +11,3 @@ script = ExtResource("1_8u601")
 
 [node name="Area_Collision" type="CollisionShape2D" parent="Attack_Area"]
 shape = SubResource("RectangleShape2D_3h56i")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(-0.598434, 0.312461)
-texture = ExtResource("2_pcy54")
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
